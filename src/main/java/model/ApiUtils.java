@@ -8,16 +8,19 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public class ApiUtils {
-    public static <T>T serviceCall(String url, Class<T> tClass) throws ExecutionException, InterruptedException {
+    public static <T> CompletableFuture<T> serviceCall(String url, Class<T> tClass) throws ExecutionException, InterruptedException {
         var client = HttpClient.newHttpClient();
 
         var request = HttpRequest.newBuilder(URI.create(url)).build();
 
-        CompletableFuture<HttpResponse<String>> response = null;
-        response = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
-
-        Gson gson = new Gson();
-        return gson.fromJson(response.get().body(), tClass);
-
+        return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(r ->{
+                    Gson gson = new Gson();
+                    return gson.fromJson(r.body(), tClass);
+                });
     }
 }
+
+
+
+

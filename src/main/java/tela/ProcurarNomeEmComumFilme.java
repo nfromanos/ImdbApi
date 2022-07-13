@@ -17,6 +17,5 @@ public class ProcurarNomeEmComumFilme {
                 })
                 .thenAccept(c -> c.getSearch().forEach((value) -> System.out.println(value.getTitle() + " - " + value.getYear())));
         Thread.sleep(2000);
-        DetalhesFilmes.detalhesFilmes();
     }
 }

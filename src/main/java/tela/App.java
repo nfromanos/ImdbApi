@@ -15,6 +15,7 @@ public class App {
                     break;
                 case "2":
                     ProcurarNomeEmComumFilme.procurarNomeEmComumFilme();
+                    DetalhesFilmes.detalhesFilmes();
                     break;
                 case "3":
                     System.exit(1);

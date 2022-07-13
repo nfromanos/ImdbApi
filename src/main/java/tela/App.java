@@ -14,8 +14,13 @@ public class App {
                     ProcurarNomeFilme.procurarNomeFilme();
                     break;
                 case "2":
-                    ProcurarNomeEmComumFilme.procurarNomeEmComumFilme();
-                    DetalhesFilmes.detalhesFilmes();
+                    ProcurarNomeEmComumFilme.procurarNomeEmComumFilme().thenRunAsync(() -> {
+                        try {
+                            DetalhesFilmes.detalhesFilmes();
+                        } catch (ExecutionException | InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
                     break;
                 case "3":
                     System.exit(1);

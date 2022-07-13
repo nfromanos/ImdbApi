@@ -6,9 +6,9 @@ import java.util.concurrent.ExecutionException;
 
 public class ProcurarNomeEmComumFilme {
 
-    public static void procurarNomeEmComumFilme() throws ExecutionException, InterruptedException {
+    public static CompletableFuture<Void> procurarNomeEmComumFilme(){
         String nomeFilme = GetNomeFilme.getNomeFilme();
-        CompletableFuture.supplyAsync(() -> {
+        return CompletableFuture.supplyAsync(() -> {
                     try {
                         return ApiUtils.serviceCall("http://www.omdbapi.com/?t=&apikey=c30d8101&s="+nomeFilme, ImdbSearch.class);
                     } catch (ExecutionException | InterruptedException e) {
@@ -16,6 +16,6 @@ public class ProcurarNomeEmComumFilme {
                     }
                 })
                 .thenAccept(c -> c.getSearch().forEach((value) -> System.out.println(value.getTitle() + " - " + value.getYear())));
-        Thread.sleep(2000);
+
     }
 }

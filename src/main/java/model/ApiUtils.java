@@ -11,11 +11,11 @@ public class ApiUtils {
     public static <T>T serviceCall(String url, Class<T> tClass) throws ExecutionException, InterruptedException {
         var client = HttpClient.newHttpClient();
 
-        var request = HttpRequest.newBuilder(URI.create(url))
-                .build();
+        var request = HttpRequest.newBuilder(URI.create(url)).build();
 
         CompletableFuture<HttpResponse<String>> response = null;
         response = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+
         Gson gson = new Gson();
         return gson.fromJson(response.get().body(), tClass);
 

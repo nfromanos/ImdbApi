@@ -16,8 +16,13 @@ public class ApiUtils {
         CompletableFuture<HttpResponse<String>> response = null;
         response = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
 
+        //Gson gson = new Gson();
+        //return gson.fromJson(response.get().body(), tClass);
+        
+        // Esse bloco abaixo serviria?
         Gson gson = new Gson();
-        return gson.fromJson(response.get().body(), tClass);
+        String json = mPrefs.getString("MyObject", "");
+        MyObject obj = gson.fromJson(json, MyObject.class);
 
     }
 }

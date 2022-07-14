@@ -1,14 +1,23 @@
 package model;
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 
 @AllArgsConstructor
-@Data
+@Getter
+@ToString
 public class Search {
-        private String Title;
-        private String Year;
+        @SerializedName("Title")
+        private String title;
+        @SerializedName("Year")
+        private String year;
+        @SerializedName("imdbID")
         private String imdbID;
-        private String Type;
-        private String Poster;
+        @SerializedName("Type")
+        private String type;
+        @SerializedName("Poster")
+        private String poster;
 
 }

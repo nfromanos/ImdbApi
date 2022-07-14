@@ -5,10 +5,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 public class ApiUtils {
-    public static <T> CompletableFuture<T> serviceCall(String url, Class<T> tClass) throws ExecutionException, InterruptedException {
+    public static <T> CompletableFuture<T> serviceCall(String url, Class<T> tClass) {
         var client = HttpClient.newHttpClient();
 
         var request = HttpRequest.newBuilder(URI.create(url)).build();

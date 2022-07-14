@@ -6,11 +6,10 @@ public class DetalhesFilmes {
     public static void detalhesFilmes() throws ExecutionException, InterruptedException {
         Scanner scanner = new Scanner(System.in);
         System.out.printf("Deseja os detalhes de algum filme?%n1 - Sim%n2 - Não%n");
-        String opcao2 = scanner.next();
-        scanner.next();
-        if (opcao2.equals("1")) {
+        String opcao = scanner.next();
+        if (opcao.equals("1")) {
             ProcurarNomeFilme.procurarNomeFilme();
-        } else if (opcao2.equals("2")) {
+        } else if (opcao.equals("2")) {
             App.main(null);
         }
     }
